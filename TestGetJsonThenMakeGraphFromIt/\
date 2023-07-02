@@ -1,0 +1,93 @@
+{-# LANGUAGE DeriveGeneric     #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE BangPatterns      #-}
+
+
+module Main (main) where
+
+import Lib
+import Data.Aeson
+import GHC.Generics
+import Data.Text (Text)
+import qualified Data.Text as T
+import qualified Data.Text.Lazy as TL
+import qualified Data.ByteString.Lazy as B
+
+import qualified Data.GraphViz as G
+import qualified Data.GraphViz.Attributes.Complete as G
+import qualified Data.GraphViz.Types as G
+
+
+-- A graph can be thought of like this
+-- A graph is usually described as a collection of vertices and a collection of edges that connect two vertices:
+--type V = [a]
+--type E = [(a,a)]
+--type Graph = ([V], [E])
+
+
+data VLabel = One | Two | Three
+type V = (Text, VLabel)
+
+data ELabel = Four | Five
+type E = (Text, Text, ELabel)
+
+type FileGraph = ([V], [E])
+
+
+
+
+
+-- GraphVisParams vertexType vertexLabeltype edgeLabelType clusterType clusterLabelType
+fileGraphParams :: G.GraphvizParams Text  VLabel ELabel () VLabel
+fileGraphParams = G.defaultParams {
+  G.fmtNode = \(v, vl) -> case vl of
+      One   -> colorAttribute $ G.RGB 0 0 0
+      Two   -> colorAttribute $ G.RGB 40 255 40
+      Three -> colorAttribute $ G.RGB 255 40 40,
+  G.fmtEdge = \(from, to, el) -> case el of
+      Four -> colorAttribute $ G.RGB 0 0 0
+      Five -> colorAttribute $ G.RGB 40 255 40
+      }  
+  where
+    colorAttribute color = [ G.Color $ G.toColorList [ color ] ]
+
+
+-- | Type of conversion, analogous to the JSON data obtainable
+--   from the URL.
+data MyKnowledgeStats = MyKnowledgeStats { 
+             pair            :: !Text,
+             unigram_score   :: !Int
+             } deriving (Show, Generic)
+
+-- Automatically generated instances
+
+instance FromJSON MyKnowledgeStats 
+instance ToJSON MyKnowledgeStats 
+
+
+
+jsonFile :: FilePath
+jsonFile = "unigrampMap.json"
+
+getJSON :: IO B.ByteString
+getJSON = B.readFile jsonFile
+
+
+getKnowledgeStats :: IO (Maybe MyKnowledgeStats)
+getKnowledgeStats = decode <$>  (B.readFile jsonFile)
+
+
+
+main :: IO ()
+main = do
+   res <-  getKnowledgeStats
+   (putStrLn . show) res
+   -- 1. Create our application-specific graph
+   let (vs, es) = ([(T.pack "Garrett", One), (T.pack "h", Two ) ],[( T.pack "Garrett", T.pack "h", Four ) ] ) :: FileGraph
+   -- 2. Convert it into a DotGraph
+   let dotGraph = G.graphElemsToDot fileGraphParams vs es :: G.DotGraph Text
+       dotText = G.printDotGraph dotGraph :: TL.Text
+  -- 4. Write the contents to a file
+   TL.writeFile "files.dot" dotText
+
+   someFunc

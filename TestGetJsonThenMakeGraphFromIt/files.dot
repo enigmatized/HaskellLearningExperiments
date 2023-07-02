@@ -1,0 +1,5 @@
+digraph {
+    Garrett [color="#000000"];
+    h [color="#28ff28"];
+    Garrett -> h [color="#000000"];
+}

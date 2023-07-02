@@ -1,0 +1,18 @@
+? /home/garrett/.stack/programs/x86_64-linux/ghc-tinfo6-9.4.5/lib/ghc-9.4.5/lib/x86_64-linux-ghc-9.4.5/rts-1.0.2/include/ghcversion.h
+: hash: c9b68cecb81cc4db15f76a3c4ea40203c2521a885e12fd4f77d4966e7ff2588d
+? /home/garrett/Documents/HaskellExperiments/CallCplusplus/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.8.1.0/build/CallCplusplus-exe/autogen/Paths_CallCplusplus.hs
+: hash: c32999b43481943f814b5a03dc9045493df641f9703f67ee845514a0f1d4f392
+? /home/garrett/Documents/HaskellExperiments/CallCplusplus/.stack-work/dist/x86_64-linux-tinfo6/Cabal-3.8.1.0/build/CallCplusplus-exe/autogen/cabal_macros.h
+: hash: 54c0cf4e59afc6a58458d21d3592524691b5c786197eb5865c5fed753578bd88
+/home/garrett/Documents/HaskellExperiments/CallCplusplus/CHANGELOG.md:
+  hash: 878e355e8c828b7ddc5e70aead48a59179f47c0d7dc1ca16c196358d5cba987d
+/home/garrett/Documents/HaskellExperiments/CallCplusplus/CallCplusplus.cabal:
+  hash: 81deb5a0cad9278eb4d1f85f29b8a70ced171e01921f29b4bcb4ccd43cc504b0
+/home/garrett/Documents/HaskellExperiments/CallCplusplus/README.md:
+  hash: c0ad7b1767dcde868efb9c24803360643bdaffbc4cab820881e5ce2dd0291eb1
+/home/garrett/Documents/HaskellExperiments/CallCplusplus/app/Main.hs:
+  hash: 6152ad174c8db34a6116979159ad6c9d87bc6f23dd99ac503ad41cfa01ca7f5c
+/home/garrett/Documents/HaskellExperiments/CallCplusplus/package.yaml:
+  hash: a9a21832316869b1fc94570c7da6f7802b26ae664ae718907bc836c91ba3565f
+/usr/include/stdc-predef.h:
+  hash: 64fdf694f7b3d51ec6c45c06dcb71ebbe9455742d3ea673012016668853d3bff
